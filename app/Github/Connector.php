@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Helpers\Github;
+namespace App\Github;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Illuminate\Http\Client\PendingRequest;
-use \Psr\Http\Message\ResponseInterface;
-use Illuminate\Support\Facades\Http;
+use Psr\Http\Message\ResponseInterface;
 
 class Connector
 {
