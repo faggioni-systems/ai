@@ -2,6 +2,7 @@
 
 namespace App\Github;
 
+use App\Github\DTOs\GithubIssueDTO;
 use App\Github\DTOs\GithubRepositoryDTO;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -41,5 +42,23 @@ class GithubDataProvider
                 $repo['full_name']
             )->toLivewire();
         })->toArray();
+    }
+
+    public function createIssue(string $repository): GithubIssueDTO
+    {
+        $data = [
+            'owner' => 'faggioni-systems',
+            'repo' => $repository,
+            'title' => '$title',
+            'body' => '$body',
+            'assignees' => [
+                'faggioni'
+            ],
+        ];
+        $issue = $this->connector->post(
+            "repos/faggioni-systems/$repository/issues",
+            $data
+        );
+        dd($issue);
     }
 }

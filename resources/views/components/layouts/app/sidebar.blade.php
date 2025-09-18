@@ -13,7 +13,7 @@
 
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
-                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    <flux:navlist.item icon="home" :href="route('pm.project-manager')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Project Manager') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 

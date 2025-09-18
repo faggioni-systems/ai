@@ -35,9 +35,11 @@ class Connector
      * @throws GuzzleException
      * @throws \Exception
      */
-    public function post(string $url): mixed
+    public function post(string $url, ?array $data): mixed
     {
-        $response = $this->client->post($url);
+        $response = $this->client->post($url, [
+            'json' => $data
+        ]);
         return $this->resolveResponse($response);
     }
 
@@ -50,6 +52,6 @@ class Connector
             throw new \RuntimeException('Error Processing Request', $response->getStatusCode());
         }
 
-        return json_decode($response->getBody()->getContents(), true);
+        return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
     }
 }

@@ -2,24 +2,34 @@
 
 use App\Github\GithubDataProvider;
 use Livewire\Volt\Component;
+use App\Jobs\DTOs\ProcessIssueDTO;
+use App\Jobs\ProcessIssue;
 
 new class extends Component {
     public array $availableRepos = [];
-    public string $context = '';
-    public string $selectedRepo = '';
-    public string $issueContext = '';
+
+    #[Validate('required')]
+    public string $selectedRepo;
+
+    #[Validate('required|min:3')]
+    public string $context;
+
 
     public function mount(): void
     {
         $github = new GithubDataProvider();
         $this->availableRepos = $github->getRepositories();
-        $con = new \App\OpenAI\OpenAIDataProvider();
-        dd($con->getResponse('create a task for changing the favicon from the website'));
+        $github->createIssue('ai');
     }
 
     public function onSubmitForm()
     {
-
+        $this->validate();
+        $data = new ProcessIssueDTO(
+            $this->selectedRepo,
+            $this->context
+        );
+        //ProcessIssue::dispatch($data);
     }
 
 }; ?>
