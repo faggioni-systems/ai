@@ -2,7 +2,7 @@
 
 namespace App\OpenAI;
 
-use OpenAI\Responses\Chat\CreateResponse;
+use OpenAI\Responses\Responses\CreateResponse;
 use OpenAI\Client;
 use OpenAI;
 

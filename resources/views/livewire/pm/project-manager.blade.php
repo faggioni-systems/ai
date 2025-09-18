@@ -13,6 +13,8 @@ new class extends Component {
     {
         $github = new GithubDataProvider();
         $this->availableRepos = $github->getRepositories();
+        $con = new \App\OpenAI\OpenAIDataProvider();
+        dd($con->getResponse('create a task for changing the favicon from the website'));
     }
 
     public function onSubmitForm()
