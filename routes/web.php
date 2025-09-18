@@ -17,6 +17,7 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/profile', 'settings.profile')->name('profile.edit');
     Volt::route('settings/password', 'settings.password')->name('password.edit');
     Volt::route('settings/appearance', 'settings.appearance')->name('appearance.edit');
+    Volt::route('ai', 'pm.project-manager')->name('pm.project-manager');
 });
 
 require __DIR__.'/auth.php';
