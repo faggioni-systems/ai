@@ -36,5 +36,8 @@ return [
     ],
     'github' => [
         'token' => env('GITHUB_TOKEN'),
+    ],
+    'openiai' => [
+        'token' => env('OPENAI_API_KEY'),
     ]
 ];

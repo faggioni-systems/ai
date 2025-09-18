@@ -2,7 +2,7 @@
 
 namespace App\Github\DTOs;
 
-class BaseDTO
+readonly class BaseDTO
 {
     public function toLivewire(): array
     {
