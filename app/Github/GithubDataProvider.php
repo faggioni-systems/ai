@@ -2,18 +2,22 @@
 
 namespace App\Github;
 
+use App\Github\DTOs\GithubCreateIssueParamsDTO;
 use App\Github\DTOs\GithubIssueDTO;
 use App\Github\DTOs\GithubRepositoryDTO;
+use App\Github\Enums\Repositories;
 use GuzzleHttp\Exception\GuzzleException;
 
 class GithubDataProvider
 {
     private Connector $connector;
     private string $baseUrl = 'https://api.github.com/';
+    private GithubDataHelper $helper;
 
     public function __construct()
     {
         $this->connector = new Connector($this->baseUrl);
+        $this->helper = new GithubDataHelper();
     }
 
     /**
@@ -44,21 +48,18 @@ class GithubDataProvider
         })->toArray();
     }
 
-    public function createIssue(string $repository): GithubIssueDTO
+    public function createIssue(GithubCreateIssueParamsDTO $data): GithubIssueDTO
     {
-        $data = [
-            'owner' => 'faggioni-systems',
-            'repo' => $repository,
-            'title' => '$title',
-            'body' => '$body',
-            'assignees' => [
-                'faggioni'
-            ],
-        ];
+        $requestData = $this->helper->getIssuesParams($data);
         $issue = $this->connector->post(
-            "repos/faggioni-systems/$repository/issues",
+            "repos/faggioni-systems/$data->repo/issues",
             $data
         );
-        dd($issue);
+        return new GithubIssueDTO(
+            $issue['id'],
+            $issue['title'],
+            $issue['body'],
+            $issue['html_url']
+        );
     }
 }

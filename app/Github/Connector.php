@@ -48,10 +48,10 @@ class Connector
      */
     private function resolveResponse(ResponseInterface $response): mixed
     {
-        if($response->getStatusCode() !== 200) {
+        // github api return 201 on successful posts
+        if($response->getStatusCode() > 300) {
             throw new \RuntimeException('Error Processing Request', $response->getStatusCode());
         }
-
         return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
     }
 }

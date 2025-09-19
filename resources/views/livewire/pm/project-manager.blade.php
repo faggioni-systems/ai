@@ -19,7 +19,6 @@ new class extends Component {
     {
         $github = new GithubDataProvider();
         $this->availableRepos = $github->getRepositories();
-        $github->createIssue('ai');
     }
 
     public function onSubmitForm()
