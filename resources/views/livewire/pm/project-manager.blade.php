@@ -36,8 +36,9 @@ new class extends Component {
             $this->context
         );
         ProcessIssue::dispatch($data);
-        Toaster::success("Issues is being created, please wait a moment and refresh the page.");
+        Toaster::success("Issues is being created, please wait a moment and refresh the Github Issue page.");
         $this->reset('context');
+        $this->reset('title');
     }
 
 }; ?>
