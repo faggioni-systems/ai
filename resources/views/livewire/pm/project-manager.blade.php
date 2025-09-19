@@ -13,6 +13,9 @@ new class extends Component {
     #[Validate('required')]
     public string $selectedRepo;
 
+    #[Validate('required')]
+    public string $title;
+
     #[Validate('required|min:3')]
     public string $context;
 
@@ -29,6 +32,7 @@ new class extends Component {
 
         $data = new ProcessIssueDTO(
             $this->selectedRepo,
+            $this->title,
             $this->context
         );
         ProcessIssue::dispatch($data);
