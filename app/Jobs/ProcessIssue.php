@@ -9,6 +9,7 @@ use App\Models\GithubIssue;
 use App\OpenAI\OpenAIDataProvider;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
+use App\Notifications\IssueCreated;
 
 class ProcessIssue implements ShouldQueue
 {
@@ -46,5 +47,6 @@ class ProcessIssue implements ShouldQueue
             $issue->toArray()
         );
         $internalIssue->save();
+        $internalIssue->notify(new IssueCreated());
     }
 }
