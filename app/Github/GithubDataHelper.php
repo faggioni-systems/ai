@@ -13,12 +13,17 @@ class GithubDataHelper
     {
         return [
             'owner' => $this->repoOwner,
-            'repo' => $data->repo->value,
+            'repo' => $data->repo,
             'title' => $data->title,
             'body' => $data->body,
             'assignees' => [
                 Users::FAGGIONI->value
             ],
         ];
+    }
+
+    public function getCreateIssueEndpoint(string $repo): string
+    {
+        return "repos/$this->repoOwner/$repo/issues";
     }
 }

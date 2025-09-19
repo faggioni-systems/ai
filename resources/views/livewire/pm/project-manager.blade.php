@@ -19,6 +19,7 @@ new class extends Component {
     {
         $github = new GithubDataProvider();
         $this->availableRepos = $github->getRepositories();
+
     }
 
     public function onSubmitForm()

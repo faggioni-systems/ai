@@ -52,8 +52,8 @@ class GithubDataProvider
     {
         $requestData = $this->helper->getIssuesParams($data);
         $issue = $this->connector->post(
-            "repos/faggioni-systems/$data->repo/issues",
-            $data
+            $this->helper->getCreateIssueEndpoint($data->repo),
+            $requestData
         );
         return new GithubIssueDTO(
             $issue['id'],

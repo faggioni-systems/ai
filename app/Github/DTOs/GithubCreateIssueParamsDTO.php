@@ -7,7 +7,7 @@ use App\Github\Enums\Repositories;
 readonly class GithubCreateIssueParamsDTO
 {
     public function __construct(
-        public readonly Repositories $repo,
+        public readonly string $repo,
         public readonly string $title,
         public readonly string $body
     ){ }
