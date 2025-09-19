@@ -10,6 +10,7 @@ class OpenAIDataProvider
 {
     private Connector $connector;
 
+
     public function __construct()
     {
         $this->connector = new Connector();

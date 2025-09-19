@@ -9,29 +9,20 @@ use OpenAI;
 class Connector
 {
     private Client $client;
+    private OpenAIDataHelper $helper;
 
     public function __construct()
     {
         $this->client = OpenAI::client(
             config('services.openai.token')
         );
+        $this->helper = new OpenAIDataHelper();
     }
 
     public function getResponse(string $input): CreateResponse
     {
-        return $this->client->responses()->create([
-            'model' => 'gpt-4o-mini',
-            'tools' => [
-                [
-                    'type' => 'web_search_preview'
-                ]
-            ],
-            'input' => $input,
-            'temperature' => 0.7,
-            'max_output_tokens' => 150,
-            'tool_choice' => 'auto',
-            'parallel_tool_calls' => true,
-            'store' => true,
-        ]);
+        return $this->client->responses()->create(
+            $this->helper->getResponsesParams($input)
+        );
     }
 }

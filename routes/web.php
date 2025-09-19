@@ -1,5 +1,9 @@
 <?php
 
+use App\Github\DTOs\GithubCreateIssueParamsDTO;
+use App\Github\GithubDataProvider;
+use App\Jobs\DTOs\ProcessIssueDTO;
+use App\OpenAI\OpenAIDataProvider;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 

@@ -5,6 +5,7 @@ use Livewire\Volt\Component;
 use App\Jobs\DTOs\ProcessIssueDTO;
 use App\Jobs\ProcessIssue;
 use Masmerise\Toaster\Toaster;
+use Livewire\Attributes\Validate;
 
 new class extends Component {
     public array $availableRepos = [];
@@ -25,6 +26,7 @@ new class extends Component {
     public function onSubmitForm()
     {
         $this->validate();
+
         $data = new ProcessIssueDTO(
             $this->selectedRepo,
             $this->context
@@ -50,9 +52,16 @@ new class extends Component {
             required
         >
             @foreach($this->availableRepos as $availableRepo)
-                <flux:select.option wire:key="{{ $availableRepo['id'] }}">{{ $availableRepo['fullName'] }}</flux:select.option>
+                <flux:select.option wire:key="{{ $availableRepo['id'] }}" value="{{ $availableRepo['name']  }}">{{ $availableRepo['fullName'] }}</flux:select.option>
             @endforeach
         </flux:select>
+
+        <flux:input
+            wire:model="title"
+            :label="__('Whats your Issue title?')"
+            type="text"
+            required
+        />
 
         <flux:textarea
             wire:model="context"
