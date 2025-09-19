@@ -4,6 +4,7 @@ use App\Github\GithubDataProvider;
 use Livewire\Volt\Component;
 use App\Jobs\DTOs\ProcessIssueDTO;
 use App\Jobs\ProcessIssue;
+use Masmerise\Toaster\Toaster;
 
 new class extends Component {
     public array $availableRepos = [];
@@ -19,6 +20,7 @@ new class extends Component {
     {
         $github = new GithubDataProvider();
         $this->availableRepos = $github->getRepositories();
+        Toaster::success('User created!');
 
     }
 
@@ -29,7 +31,7 @@ new class extends Component {
             $this->selectedRepo,
             $this->context
         );
-        //ProcessIssue::dispatch($data);
+        ProcessIssue::dispatch($data);
     }
 
 }; ?>
