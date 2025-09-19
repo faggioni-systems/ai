@@ -4,7 +4,7 @@ namespace App\Github\DTOs;
 
 readonly class BaseDTO
 {
-    public function toLivewire(): array
+    public function toArray(): array
     {
         return (array) $this;
     }

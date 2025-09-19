@@ -45,7 +45,7 @@ class GithubDataProvider
                 $repo['id'],
                 $repo['name'],
                 $repo['full_name']
-            ))->toLivewire();
+            ))->toArray();
         })->toArray();
     }
 

@@ -37,6 +37,11 @@ new class extends Component {
         );
         ProcessIssue::dispatch($data);
         Toaster::success("Issues is being created, please wait a moment and refresh the Github Issue page.");
+        $this->resetState();
+    }
+
+    public function resetState(): void
+    {
         $this->reset('context');
         $this->reset('title');
     }
@@ -73,7 +78,7 @@ new class extends Component {
             :label="__('What is the issue about?')"
             type="password"
             required
-        />
+         />
         <div class="flex items-center gap-4">
             <div class="flex items-center justify-end">
                 <flux:button variant="primary" type="submit" class="w-full" data-test="update-password-button">
