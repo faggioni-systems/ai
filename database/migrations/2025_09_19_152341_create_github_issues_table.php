@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('github_id')->unique();
             $table->string('title');
             $table->text('body');
-            $table->text('url');
+            $table->string('url');
             $table->timestamps();
         });
     }

@@ -61,6 +61,7 @@ new class extends Component {
             placeholder="Choose repo..."
             required
         >
+            <flux:select.option wire:key="0" value="">{{ __('Select Repo') }}</flux:select.option>
             @foreach($this->availableRepos as $availableRepo)
                 <flux:select.option wire:key="{{ $availableRepo['id'] }}" value="{{ $availableRepo['name']  }}">{{ $availableRepo['fullName'] }}</flux:select.option>
             @endforeach

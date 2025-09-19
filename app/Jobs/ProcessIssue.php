@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Github\DTOs\GithubCreateIssueParamsDTO;
 use App\Github\GithubDataProvider;
 use App\Jobs\DTOs\ProcessIssueDTO;
+use App\Models\GithubIssue;
 use App\OpenAI\OpenAIDataProvider;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
@@ -41,5 +42,9 @@ class ProcessIssue implements ShouldQueue
                 body: collect($response->output)->pluck('content')->flatten()->pluck('text')->join("\n")
             )
         );
+        $internalIssue = new GithubIssue(
+            $issue->toArray()
+        );
+        $internalIssue->save();
     }
 }
