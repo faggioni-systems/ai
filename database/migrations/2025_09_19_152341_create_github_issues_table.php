@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('github_issues', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('github_id')->unique();
             $table->string('title');
             $table->text('body');
             $table->text('url');
