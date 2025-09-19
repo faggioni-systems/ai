@@ -20,8 +20,6 @@ new class extends Component {
     {
         $github = new GithubDataProvider();
         $this->availableRepos = $github->getRepositories();
-        Toaster::success('User created!');
-
     }
 
     public function onSubmitForm()
@@ -32,6 +30,8 @@ new class extends Component {
             $this->context
         );
         ProcessIssue::dispatch($data);
+        Toaster::success("Issues is being created, please wait a moment and refresh the page.");
+        $this->reset('context');
     }
 
 }; ?>
