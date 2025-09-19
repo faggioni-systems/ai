@@ -8,5 +8,5 @@ readonly class ProcessIssueDTO
         public readonly string $repo,
         public readonly string $title,
         public readonly string $context
-    ){ }
+    ) {}
 }

@@ -7,7 +7,7 @@ use App\Github\Enums\Users;
 
 class GithubDataHelper
 {
-    private  string $repoOwner = 'faggioni-systems';
+    private string $repoOwner = 'faggioni-systems';
 
     public function getIssuesParams(GithubCreateIssueParamsDTO $data): array
     {
@@ -17,7 +17,7 @@ class GithubDataHelper
             'title' => $data->title,
             'body' => $data->body,
             'assignees' => [
-                Users::FAGGIONI->value
+                Users::FAGGIONI->value,
             ],
         ];
     }

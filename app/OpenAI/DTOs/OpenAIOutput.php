@@ -10,5 +10,5 @@ readonly class OpenAIOutput
         public readonly string $status,
         public readonly string $role,
         public readonly array $content,
-    ) { }
+    ) {}
 }

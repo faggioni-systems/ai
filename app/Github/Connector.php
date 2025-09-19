@@ -16,8 +16,8 @@ class Connector
         $this->client = new Client([
             'base_uri' => $baseUrl,
             'headers' => [
-                'Authorization' => 'Bearer ' . $key
-            ]
+                'Authorization' => 'Bearer '.$key,
+            ],
         ]);
     }
 
@@ -28,6 +28,7 @@ class Connector
     public function get(string $url): mixed
     {
         $response = $this->client->get($url);
+
         return $this->resolveResponse($response);
     }
 
@@ -38,8 +39,9 @@ class Connector
     public function post(string $url, ?array $data): mixed
     {
         $response = $this->client->post($url, [
-            'json' => $data
+            'json' => $data,
         ]);
+
         return $this->resolveResponse($response);
     }
 
@@ -49,9 +51,10 @@ class Connector
     private function resolveResponse(ResponseInterface $response): mixed
     {
         // github api return 201 on successful posts
-        if($response->getStatusCode() > 300) {
+        if ($response->getStatusCode() > 300) {
             throw new \RuntimeException('Error Processing Request', $response->getStatusCode());
         }
+
         return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
     }
 }

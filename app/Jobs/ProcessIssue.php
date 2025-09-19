@@ -12,6 +12,7 @@ use Illuminate\Foundation\Queue\Queueable;
 class ProcessIssue implements ShouldQueue
 {
     use Queueable;
+
     private ProcessIssueDTO $processIssueDTO;
 
     /**
@@ -27,8 +28,8 @@ class ProcessIssue implements ShouldQueue
      */
     public function handle(): void
     {
-        $openAIDataProvider = new OpenAIDataProvider();
-        $githubDataProvider = new GithubDataProvider();
+        $openAIDataProvider = new OpenAIDataProvider;
+        $githubDataProvider = new GithubDataProvider;
 
         $response = $openAIDataProvider->getResponse(
             $this->processIssueDTO->context

@@ -2,13 +2,14 @@
 
 namespace App\OpenAI;
 
-use OpenAI\Responses\Responses\CreateResponse;
-use OpenAI\Client;
 use OpenAI;
+use OpenAI\Client;
+use OpenAI\Responses\Responses\CreateResponse;
 
 class Connector
 {
     private Client $client;
+
     private OpenAIDataHelper $helper;
 
     public function __construct()
@@ -16,7 +17,7 @@ class Connector
         $this->client = OpenAI::client(
             config('services.openai.token')
         );
-        $this->helper = new OpenAIDataHelper();
+        $this->helper = new OpenAIDataHelper;
     }
 
     public function getResponse(string $input): CreateResponse

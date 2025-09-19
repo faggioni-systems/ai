@@ -10,15 +10,15 @@ class OpenAIDataProvider
 {
     private Connector $connector;
 
-
     public function __construct()
     {
-        $this->connector = new Connector();
+        $this->connector = new Connector;
     }
 
     public function getResponse(string $input): OpenAIResponseDTO
     {
         $response = $this->connector->getResponse($input);
+
         return new OpenAIResponseDTO(
             id: $response->id,
             object: $response->object,
