@@ -40,11 +40,11 @@ class GithubDataProvider
         );
 
         return collect($repos)->map(function ($repo) {
-            return new GithubRepositoryDTO(
+            return (new GithubRepositoryDTO(
                 $repo['id'],
                 $repo['name'],
                 $repo['full_name']
-            )->toLivewire();
+            ))->toLivewire();
         })->toArray();
     }
 
